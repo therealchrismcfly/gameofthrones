@@ -1,9 +1,14 @@
 .cards {
   background-color: #39383f;
   color: #f5efe6;
-  width: 50vw;
   min-height: 20px;
   padding: 2rem;
   border-radius: 1rem;
   margin: 2rem;
+}
+
+.card__headline {
+  color: #dedbdc;
+  font-size: 18px;
+  text-align: center;
 }
