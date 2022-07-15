@@ -1,4 +1,4 @@
-import displayHouses from '../../displayHouses/displayHouses.js';
+import displayHouses from '../displayHouses/displayHouses.js';
 export default function fetchData() {
   const url = 'https://www.anapioficeandfire.com/api/houses';
 
