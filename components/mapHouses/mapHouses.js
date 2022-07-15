@@ -1,4 +1,4 @@
-export default function displayHouses(houses) {
+export default function mapHouses(houses) {
   const houseCards = houses.map(house => {
     return {
       name: house.name,
