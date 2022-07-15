@@ -1,3 +1,5 @@
+import showHouses from '../showHouses/showHouses.js';
+
 export default function mapHouses(houses) {
   const houseCards = houses.map(house => {
     return {
@@ -6,5 +8,6 @@ export default function mapHouses(houses) {
       coatOfArms: house.coatOfArms,
     };
   });
-  console.log(houseCards);
+
+  showHouses(houseCards);
 }
