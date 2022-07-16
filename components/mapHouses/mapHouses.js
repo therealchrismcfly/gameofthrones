@@ -7,7 +7,7 @@ export default function mapHouses(houses) {
       region: house.region,
       coatOfArms: house.coatOfArms,
       seats: house.seats,
-      currentLord: house.currentLord,
+      currentLord: house.currentLordName,
     };
   });
 
