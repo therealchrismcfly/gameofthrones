@@ -11,12 +11,12 @@ export default function showHouses(houseCards) {
     headline.innerText = houseCard.name;
     container.append(headline);
 
-    const infoList = document.createElement('ul');
-    infoList.innerHTML = `
-    <li>Region: ${houseCard.region}</li> 
-    <li>Coat of Arms: ${houseCard.coatOfArms}</li>
-    <li>Seat: ${houseCard.seats}</li>
-    <li>Current Lord: ${houseCard.currentLord}</li>`;
-    container.append(infoList);
+    const region = document.createElement('p');
+    region.innerText = houseCard.region;
+    container.append(region);
+
+    const currentLord = document.createElement('p');
+    currentLord.innerText = houseCard.currentLord;
+    container.append(currentLord);
   });
 }

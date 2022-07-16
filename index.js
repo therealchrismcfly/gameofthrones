@@ -1,3 +1,3 @@
-import fetchData from './components/fetchHouses/fetchHouses.js';
+import fetchData from './components/fetchData/fetchData.js';
 
 fetchData();
