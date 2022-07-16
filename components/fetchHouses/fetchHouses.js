@@ -1,26 +1,46 @@
-import mapHouses from '../mapHouses/mapHouses.js';
 import showHouses from '../showHouses/showHouses.js';
-/*export default function fetchData() {
+
+/* export default function fetchData() {
   const url = 'https://www.anapioficeandfire.com/api/houses';
 
-  fetch(url)
+  fetch(url) //fetch the houses data
     .then(result => result.json())
     .then(data => {
       data.forEach(house => {
-        fetch(house.currentLord)
+        fetch(house.currentLord) //fetch the data for the currtent lord
           .then(currentLordResult => currentLordResult.json())
           .then(currentLordData => {
-            house.lordName = currentLordData.name;
-            //return data;
+            house.currentLordName = currentLordData.name; //set the name of the person fetch as currentLordName in houses data
           })
           .catch(error => console.log(error));
       });
-      //console.log(data);
-      return data;
+
+      return data; //return the modified data
     })
-    .then(newData => showHouses(newData))
+    .then(newData => showHouses(newData)) //directly calls showHoses, i skipped mapHouses to reduce avoid posisble sources of errors
     .catch(error => console.error(error));
-}*/
+} */
+
+/* This does basicly the same as the function above and has exactly the same problem: */
+
+export default async function fetchData() {
+  const url = 'https://www.anapioficeandfire.com/api/houses';
+  const response = await fetch(url);
+  const data = await response.json();
+  data.forEach(async house => {
+    if (house.currentLord) {
+      const currentLordResult = await fetch(house.currentLord); //fetch the data for the currtent lord
+      const currentLordData = await currentLordResult.json();
+      house.currentLordName = currentLordData.name; //set the name of the person fetch as currentLordName in houses data
+    }
+  });
+
+  showHouses(data);
+}
+
+/*
+
+A third version, totally not working:
 
 export default async function fetchData() {
   const url = 'https://www.anapioficeandfire.com/api/houses';
@@ -36,20 +56,4 @@ export default async function fetchData() {
       region: 'Blaba',
       lordName: 'ja',
     };
-  });
-
-  /*const newData =  data.map(async (house) => {
-    if (house.currentLord) {
-      //console.log(house.currentLord);
-      const currentLordResult = await fetch(house.currentLord);
-      const currentLordData = await currentLordResult.json();
-
-      house.lordName = await currentLordData.name;
-
-      //console.log(house.name + ' / ' + house.lordName);
-      //console.log(data);
-    }
-  });
-  //await console.log('---->' + newData);*/
-  showHouses(newData);
-}
+  });*/
