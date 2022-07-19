@@ -17,7 +17,7 @@ import showHouses from '../showHouses/showHouses.js';
 
       return data; //return the modified data
     })
-    .then(newData => showHouses(newData)) //directly calls showHoses, i skipped mapHouses to reduce avoid posisble sources of errors
+    .then(newData => showHouses(newData)) //directly calls showHouses, i skipped mapHouses to reduce avoid posisble sources of errors
     .catch(error => console.error(error));
 } */
 
@@ -27,33 +27,15 @@ export default async function fetchData() {
   const url = 'https://www.anapioficeandfire.com/api/houses';
   const response = await fetch(url);
   const data = await response.json();
-  data.forEach(async house => {
+  const result = await Promise.all(data.map(async house => {
     if (house.currentLord) {
       const currentLordResult = await fetch(house.currentLord); //fetch the data for the currtent lord
       const currentLordData = await currentLordResult.json();
       house.currentLordName = currentLordData.name; //set the name of the person fetch as currentLordName in houses data
+  
     }
-  });
+    return house;
+  }));
 
-  showHouses(data);
+  showHouses(result);
 }
-
-/*
-
-A third version, totally not working:
-
-export default async function fetchData() {
-  const url = 'https://www.anapioficeandfire.com/api/houses';
-  const response = await fetch(url);
-  const data = await response.json();
-  const newData = data.map(house => {
-    const theName = async d => {
-      const response = await fetch(this.currentLord);
-      console.log('a' + response);
-    };
-    return {
-      rasdf: name,
-      region: 'Blaba',
-      lordName: 'ja',
-    };
-  });*/
